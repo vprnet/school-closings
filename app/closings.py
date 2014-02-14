@@ -6,19 +6,20 @@ import xml.etree.ElementTree as ET
 def closings():
     """Takes all school closings and returns a JSON-like dictionary:
     {'Vermont':
-        [{'Bennington': {
-            'school': school_name,
-            'condition': condition}
-        },
-        ...
-        ]
+        [{'county': 'Bennington',
+          'closings': [{
+                'school': school_name,
+                'condition': condition},
+                ...]
+        }...]
     }"""
 
     url = 'http://www.vabdayoff.com/cgi-bin/schoolclosings.cgi?returnbody=xml'
     r = requests.get(url)
     root = ET.fromstring(r.text)
     timestamp = root[0].text
-    school_closings = {}
+    closings = {}
+    county_list = []
     for children in root[1]:
         school_dict = {}
         for child in children:
@@ -27,12 +28,18 @@ def closings():
         county = school_dict['county']
         closed_school = {'school': school_dict['school'],
             'condition': school_dict['condition']}
-        if state in school_closings:
-            if county in school_closings[state]:
-                school_closings[state][county].append(closed_school)
-            else:
-                school_closings[state][county] = [closed_school]
+        if county in county_list:
+            for each_county in closings[state]:
+                if county == each_county['county']:
+                    each_county['closings'].append(closed_school)
         else:
-            school_closings[state] = {county: [closed_school]}
+            county_list.append(county)
+            if state in closings:
+                closings[state].append({'county': county,
+                'closings': [closed_school]})
+            else:
+                closings[state] = [{'county': county, 'closings': [closed_school]}]
 
-    return school_closings, timestamp
+    for state, counties in closings.iteritems():
+        counties = sorted(counties, key=lambda k: k['county'])
+    return closings, timestamp

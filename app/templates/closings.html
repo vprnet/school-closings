@@ -4,8 +4,8 @@
                 <h3 id="{{ state|lower|replace(' ', '_') }}">{{ state }}</h3>
                 <table>
                     {% for county in school_closings[state] %}
-                        <tr class="county"><th colspan="2">{{ county }}</th></tr>
-                        {% for closed in school_closings[state][county] %}
+                        <tr class="county"><th colspan="2">{{ county.county }}</th></tr>
+                        {% for closed in county.closings %}
                         <tr>
                             <td>{{ closed.school }}</td>
                             <td class="condition">{{ closed.condition }}</td>
