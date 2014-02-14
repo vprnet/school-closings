@@ -4,7 +4,6 @@ import os
 import hashlib
 import gzip
 import time
-import datetime
 from sys import argv
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
@@ -125,6 +124,3 @@ def set_metadata():
         k.set_metadata('ETag', etag_hash)
         k.set_contents_from_filename(f)
         k.make_public()
-
-    print '\nPage successfully updated'
-    print "On " + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
