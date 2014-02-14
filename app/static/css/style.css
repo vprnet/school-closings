@@ -2281,7 +2281,7 @@ h2 {
   margin-top: 0; }
 
 #buttons {
-  padding: 20px 0 30px; }
+  padding: 20px 0 10px; }
   #buttons h4 {
     text-align: center; }
   #buttons h3 {
@@ -2313,6 +2313,12 @@ div.state table {
     font-weight: 300; }
   div.state table td.condition {
     text-align: right; }
+@media (min-width: 1000px) {
+  div.state {
+    margin-top: 24px; } }
+@media (min-width: 1200px) {
+  div.state {
+    margin-top: 30px; } }
 
 #eots {
   padding: 0 20px;
@@ -2332,11 +2338,48 @@ div.state table {
       #eots p a:hover {
         border-color: #999999;
         color: #3f4444; }
+  #eots img {
+    margin: 0 auto; }
   #eots #eots_links {
-    margin-top: 15px; }
+    margin: 15px auto;
+    max-width: 220px; }
+  @media (min-width: 1000px) {
+    #eots #eots_margin {
+      padding: 0; }
+    #eots #eots_links {
+      margin-top: 20px; }
+      #eots #eots_links i {
+        font-size: 18px;
+        width: 20px; }
+      #eots #eots_links p {
+        font-size: 14px;
+        margin: 2px 0; } }
+  @media (min-width: 1200px) {
+    #eots #eots_links {
+      margin-top: 25px; }
+      #eots #eots_links i {
+        font-size: 22px; }
+      #eots #eots_links p {
+        font-size: 16px;
+        margin: 8px 0; } }
 
 #updated {
   text-align: center;
   font-size: 12px;
   color: #707979;
   padding: 8px 0; }
+
+div.vab {
+  color: #585e5e;
+  font-weight: 400;
+  font-size: 12px; }
+  div.vab a {
+    text-decoration: none;
+    border-bottom: 2px solid #e6e6e6;
+    color: #646c6c; }
+    div.vab a:hover {
+      border-color: #999999;
+      color: #585e5e; }
+
+#sidebar_container div.vab {
+  margin-left: 20px; }
