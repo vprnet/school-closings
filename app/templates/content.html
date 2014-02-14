@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}School Closings | VPR{% endblock %}
+{% block header_title %}School Closings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="visible-xs">School Closings</h2>
+            <p id="updated">Last Update: {{ timestamp }}</p>
+            <div id="buttons" class="visible-xs">
+                <h4>Choose A State</h4>
+                    {% if 'Vermont' in school_closings %}
+                <h3><a href="#vermont" alt="Vermont school closings">Vermont</a></h3>
+                    {% endif %}
+                    {% if 'New York' in school_closings %}
+                <h3><a href="#new_york" alt="New York School Closings">New York</a></h3>
+                    {% endif %}
+                    {% if 'New Hampshire' in school_closings %}
+                <h3><a href="#new_hampshire" alt="New Hampshire School Closings">New Hampshire</a></h3>
+                    {% endif %}
+            </div>
+        </div>
+        <div id="sidebar_container" class="col-sm-5">
+            <div class="row" id="eots">
+                <div class="col-sm-6">
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/EOTS_school_closings.jpg') }}" alt="Eye On The Sky Logo">
+                </div>
+                <div id="eots_links" class="col-sm-6">
+                    <p><i class="icon ion-document-text"></i> <a href="http://www.fairbanksmuseum.org/forecasts" alt="Eye On The Sky print forecast">Read the forecast</a></p>
+                    <p><i class="icon ion-play"></i> <a href="http://www.vpr.net/xml/podcasts/forecast_update/eosforecast.mp3" alt="Eye On The Sky audio forecast">Listen to the forecast</a></p>
+                    <p><i class="icon ion-social-facebook"></i> <a href="https://www.facebook.com/EyeOnTheSky">EOTS On Facebook</a></p>
+                </div>
+            </div>
+            {% include "underwriter.html" %}
+        </div>
+        <div id="closings_container" class="col-sm-7">
+            <div class="closings" id="big_screen">
+            {% include "closings.html" %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="vab">
+                <p>This data is provided by the Vermont Association of Broadcasters. To add your school to the list, or for any questions about the listings, <a href="http://www.vab.org/School%20Closing%20Info.htm" alt="Vermont Association of Broadcaster's school closing page">contact the VAB</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script-ck.js') }}"></script>
+{% endblock %}

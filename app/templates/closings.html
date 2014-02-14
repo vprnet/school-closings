@@ -1,0 +1,20 @@
+    {% if school_closings %}
+        {% for state in school_closings %}
+            <div class="state">
+                <h3 id="{{ state|lower|replace(' ', '_') }}">{{ state }}</h3>
+                <table>
+                    {% for county in school_closings[state] %}
+                        <tr class="county"><th colspan="2">{{ county }}</th></tr>
+                        {% for closed in school_closings[state][county] %}
+                        <tr>
+                            <td>{{ closed.school }}</td>
+                            <td class="condition">{{ closed.condition }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>There are no reported school closings at this time</p>
+    {% endif %}

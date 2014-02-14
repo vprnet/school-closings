@@ -1,0 +1,76 @@
+h2 {
+    background: $blue;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 0;
+}
+
+#buttons {
+    padding: 20px 0 30px;
+    h4 {
+        text-align: center;
+    }
+    h3 {
+        text-align: center;
+        a {
+            @include lt_link(lighten($gray, 50%), steelblue, 3px);
+        }
+    }
+}
+
+div.state {
+    h3 {
+        background: lighten($red, 5%);
+        font-size: 28px;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+    table {
+        margin-bottom: 40px;
+        width: 100%;
+        tr.county {
+            padding-top: 10px;
+        }
+        th {
+            padding: 15px 0 0;
+            font-size: 18px;
+        }
+        td {
+            font-size: 16px;
+            font-weight: 300;
+        }
+        td.condition {
+            text-align: right;
+        }
+    }
+}
+
+#eots {
+    padding: 0 20px;
+    margin-bottom: 20px;
+    i {
+        font-size: 24px;
+        width: 30px;
+        position: relative;
+        top: 2px;
+    }
+    p {
+        margin-left: 5px;
+        font-size: 18px;
+        a {
+            @include lt-link(white, $black, 2px);
+        }
+    }
+    #eots_links {
+        margin-top: 15px;
+    }
+}
+
+#updated {
+    text-align: center;
+    font-size: 12px;
+    color: lighten($black, 20%);
+    padding: 8px 0;
+}
