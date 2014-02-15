@@ -2448,6 +2448,13 @@ div.recent_news {
 #no_reported {
   color: #75787b;
   font-weight: 300; }
+  #no_reported a {
+    text-decoration: none;
+    border-bottom: 2px solid #e6e6e6;
+    color: #828588; }
+    #no_reported a:hover {
+      border-color: #999999;
+      color: #75787b; }
 
 #no_reported.hidden-xs {
   font-size: 18px;

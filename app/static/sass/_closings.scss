@@ -204,6 +204,9 @@ div.recent_news {
 #no_reported {
     color: $gray;
     font-weight: 300;
+    a {
+        @include lt_link(white, $gray, 2px);
+    }
 }
 
 #no_reported.hidden-xs {
