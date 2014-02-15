@@ -15,7 +15,7 @@ def index():
     social = {
         'title': "Is Your School Closed Today?",
         'subtitle': "VPR's School Closing Listings",
-        'img': "img/EOTS_school_closings.jpg",
+        'img': "static/img/EOTS_school_closings.jpg",
         'description': "Find out if school is closed using VPR's school closings listings, now smartphone friendly.",
         'twitter_text': "Is your school closed today? Find out using VPR's smartphone friendly listings",
         'twitter_hashtag': "vtwx"
