@@ -14,7 +14,7 @@ def closings():
         }...]
     }"""
 
-    url = 'http://www.vabdayoff.com/cgi-bin/schoolclosings.cgi?returnbody=xml'
+    url = 'http://www.vabdayoff.com/cgi-bin/schoolclosings.cgi?returnbody=xml&sampledata=1'
     r = requests.get(url)
     root = ET.fromstring(r.text)
     timestamp = root[0].text

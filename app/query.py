@@ -11,7 +11,7 @@ from cStringIO import StringIO
 from config import NPR_API_KEY, ABSOLUTE_PATH
 
 
-def api_feed(tag, numResults=1, char_limit=240, thumbnail=False):
+def api_feed(tag, numResults=1, char_limit=140, thumbnail=False):
     """Query the NPR API using given tag ID, return dictionary of results"""
 
     stories = query_api(tag, numResults)

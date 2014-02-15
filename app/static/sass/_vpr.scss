@@ -89,6 +89,9 @@ footer {
         li {
             display: inline
         }
+        a {
+            @include lt_link(white, $gray, 2px);
+        }
     }
     @media (max-width: 330px) {
         margin-left: -5px;

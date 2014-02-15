@@ -9,6 +9,7 @@
         <div class="col-xs-12">
             <h2 class="visible-xs">School Closings</h2>
             <p id="updated">Last Update: {{ timestamp }}</p>
+            {% if school_closings %}
             <div id="buttons" class="visible-xs">
                 <h4>See Closings By State:</h4>
                     {% if 'Vermont' in school_closings %}
@@ -21,6 +22,13 @@
                 <h3><a href="#new_hampshire" alt="New Hampshire School Closings">New Hampshire</a></h3>
                     {% endif %}
             </div>
+            {% else %}
+            <div id="no_reported" class="visible-xs">
+                <h3 class="no_closings">No Reported Closings</h3>
+                <p>There are <strong>no reported school closings</strong> at this time.</p>
+                <p>This list is purged daily at 11am. School closings are reported to the Vermont Broadcasters Association, who maintains the list.</p>
+            </div>
+            {% endif %}
                 <hr class="visible-xs">
         </div>
         <div id="sidebar_container" class="col-sm-5">
@@ -37,8 +45,19 @@
                 </div>
             </div>
             {% include "underwriter.html" %}
+            {% if school_closings %}
+            <div class="recent_news">
+                <h3>Recent News</h3>
+                <div class="padding_box">
+                {% for story in recent_news %}
+                    <p><a href="{{ story.url }}" alt="{{ story.title }}">{{ story.title }}</a></p>
+                {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
             <div class="hidden-xs vab">
-                <p>This data is provided by the Vermont Association of Broadcasters. To add your school to the list, or for any questions about the listings, <a href="http://www.vab.org/School%20Closing%20Info.htm" alt="Vermont Association of Broadcaster's school closing page">contact the VAB</a></p>
+            {% include "vab.html" %}
             </div>
         </div>
         <div id="closings_container" class="col-sm-7">
@@ -51,7 +70,7 @@
         <hr>
         <div class="col-sm-6 col-sm-offset-3">
             <div class="vab">
-                <p>This data is provided by the Vermont Association of Broadcasters. To add your school to the list, or for any questions about the listings, <a href="http://www.vab.org/School%20Closing%20Info.htm" alt="Vermont Association of Broadcaster's school closing page">contact the VAB</a></p>
+            {% include "vab.html" %}
             </div>
         </div>
     </div>

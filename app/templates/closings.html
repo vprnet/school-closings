@@ -16,5 +16,20 @@
             </div>
         {% endfor %}
     {% else %}
-        <p>There are no reported school closings at this time</p>
+    <div id="no_reported" class="hidden-xs">
+        <h3 class="no_closings">No Reported Closings</h3>
+        <p>There are <strong>no reported school closings</strong> at this time.</p>
+        <p>This list is purged daily at 11am. School closings are reported to the Vermont Broadcasters Association, who maintains the list.</p>
+    </div>
+    <div id="big_screen" class="recent_news">
+        <h3>Recent News</h3>
+        <div class="padding_box">
+        {% for story in recent_news %}
+            <h4><a href="{{ story.url }}" alt="{{ story.title }}">{{ story.title }}</a></h4>
+            {% for paragraph in story.text %}
+            <p>{{ paragraph|safe }}</p>
+            {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
     {% endif %}
