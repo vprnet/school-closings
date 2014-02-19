@@ -119,9 +119,13 @@ div.state {
 
 #updated {
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 500;
     color: lighten($black, 20%);
     padding: 8px 0;
+    @media (max-width: 500px) {
+        font-size: 14px;
+    }
 }
 
 div.vab {
