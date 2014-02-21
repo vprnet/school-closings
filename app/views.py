@@ -15,7 +15,7 @@ def index():
     social = {
         'title': "Is Your School Closed Today?",
         'subtitle': "VPR's School Closing Listings",
-        'img': "static/img/vpr_school_closings.jpg",
+        'img': "static/img/vpr_school_closings_2.jpg",
         'description': "Find the list of school cancellations and delays, by county, in Vermont and areas of New York and New Hampshire. This list is provided by the VAB and is smartphone and tablet friendly.",
         'twitter_text': "Is your school closed today? Find out using VPR's smartphone friendly listings",
         'twitter_hashtag': "vtwx"
