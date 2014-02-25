@@ -156,6 +156,9 @@ div.vab {
 div.recent_news {
     margin: 0 0 40px;
     background: lighten($gray, 45%);
+    p {
+        color: $gray;
+    }
     a {
         @include lt_link(lighten($gray, 45%), lighten($black, 10%), 2px);
     }
