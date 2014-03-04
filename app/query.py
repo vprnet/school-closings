@@ -11,7 +11,8 @@ from cStringIO import StringIO
 from config import NPR_API_KEY, ABSOLUTE_PATH
 
 
-def api_feed(tag, numResults=1, char_limit=140, thumbnail=False):
+def api_feed(tag, numResults=1, char_limit=140, image=False, byline=False,
+            audio=False):
     """Query the NPR API using given tag ID, return dictionary of results"""
 
     stories = query_api(tag, numResults)
@@ -21,34 +22,41 @@ def api_feed(tag, numResults=1, char_limit=140, thumbnail=False):
         link = story['link'][0]['$text']
         date = convert_date(story['storyDate']['$text'])
         title = story['title']['$text'].strip()
-        byline = {}
-        byline['name'] = story['byline'][0]['name']['$text']
-        byline['url'] = story['byline'][0]['link'][0]['$text']
+        if byline:
+            byline = {}
+            byline['name'] = story['byline'][0]['name']['$text']
+            try:
+                byline['url'] = story['byline'][0]['link'][0]['$text']
+            except KeyError:
+                byline['url'] = ''
 
-        try:  # if there's an image, determine orientation and define boundary
-            story_image = story['image'][0]['crop'][0]
-            image = story_image['src']
-            width = int(story_image['width'])
-            height = int(story_image['height'])
-            if int(width) > int(height):
-                landscape = True
-                if width > 728:  # biggest size for landscape photos
-                    width = 728
-            else:
+        landscape = False
+        if image:
+            try:  # if there's an image, determine orientation and define boundary
+                story_image = story['image'][0]['crop'][0]
+                image = story_image['src']
+                width = int(story_image['width'])
+                height = int(story_image['height'])
+                if int(width) > int(height):
+                    landscape = True
+                    if width > 728:  # biggest size for landscape photos
+                        width = 728
+                else:
+                    landscape = False
+                    if width > 223:  # biggest size for portrait photos
+                        width = 223
+            except KeyError:
+                image = False  # set equal to url string for default image
                 landscape = False
-                if width > 223:  # biggest size for portrait photos
-                    width = 223
-        except KeyError:
-            image = False  # set equal to url string for default image
-            landscape = False
 
-        try:
-            audio = {}
-            audio_file = story['audio'][0]
-            audio['mp3'] = audio_file['format']['mp3'][0]['$text'].split('?')[0]
-            audio['duration'] = audio_file['duration']['$text']
-        except KeyError:
-            audio = False
+        if audio:
+            try:
+                audio = {}
+                audio_file = story['audio'][0]
+                audio['mp3'] = audio_file['format']['mp3'][0]['$text'].split('?')[0]
+                audio['duration'] = audio_file['duration']['$text']
+            except KeyError:
+                audio = False
 
         full_text = [i['$text'] for i in story['text']['paragraph'] if len(i) > 1]
         # if len(i) > 1 ignores pars w/ no text, i.e. when images or audio
@@ -62,7 +70,7 @@ def api_feed(tag, numResults=1, char_limit=140, thumbnail=False):
 
         text = full_text[:paragraphs_needed]
 
-        if thumbnail:
+        if image:
             try:
                 image_url = story['image'][0]['crop'][0]['src']
                 image = generate_thumbnail(image_url, preserve_ratio=True, size=(width, height))

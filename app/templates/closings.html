@@ -24,7 +24,7 @@
         <h3>Recent News</h3>
         <div class="padding_box">
         {% for story in recent_news %}
-            <h4><a href="{{ story.url }}" alt="{{ story.title }}">{{ story.title }}</a></h4>
+            <h4><a href="{{ story.link }}" alt="{{ story.title }}">{{ story.title }}</a></h4>
             {% for paragraph in story.text %}
             <p>{{ paragraph|safe }}</p>
             {% endfor %}
