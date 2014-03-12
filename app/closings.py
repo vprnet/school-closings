@@ -42,5 +42,4 @@ def closings():
 
     for state, counties in closings.iteritems():
         counties = sorted(counties, key=lambda k: k['county'])
-    print timestamp
     return closings, timestamp
