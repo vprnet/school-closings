@@ -16,7 +16,6 @@ def closings():
 
     url = 'http://www.vabdayoff.com/cgi-bin/schoolclosings.cgi?returnbody=xml'
     r = requests.get(url)
-    print r.text
     root = ET.fromstring(r.text)
     timestamp = root[0].text
     closings = {}
