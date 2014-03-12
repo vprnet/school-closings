@@ -28,12 +28,12 @@ def closings():
         county = school_dict['county']
         closed_school = {'school': school_dict['school'],
             'condition': school_dict['condition']}
-        if county in county_list:
+        if (county + state) in county_list:
             for each_county in closings[state]:
                 if county == each_county['county']:
                     each_county['closings'].append(closed_school)
         else:
-            county_list.append(county)
+            county_list.append(county + state)
             if state in closings:
                 closings[state].append({'county': county,
                 'closings': [closed_school]})
