@@ -16,6 +16,7 @@ def closings():
 
     url = 'http://www.vabdayoff.com/cgi-bin/schoolclosings.cgi?returnbody=xml'
     r = requests.get(url)
+    print r.text
     root = ET.fromstring(r.text)
     timestamp = root[0].text
     closings = {}
@@ -42,4 +43,5 @@ def closings():
 
     for state, counties in closings.iteritems():
         counties = sorted(counties, key=lambda k: k['county'])
+    print timestamp
     return closings, timestamp
