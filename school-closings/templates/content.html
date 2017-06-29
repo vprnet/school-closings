@@ -6,6 +6,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
+      <div class="col-xs-12">
+        {% include "callout.html" %}
+      </div>
+    </div>
+    <div class="row">
         <div id="visible_mobile" class="col-xs-12">
             <h2 class="visible-xs">School Closings</h2>
             <p id="updated">Last Update: {{ timestamp }}</p>
@@ -39,22 +44,14 @@
                 <div id="eots_margin" class="col-md-6">
                     <div id="eots_links">
                         <p><i class="icon ion-document-text"></i> <a href="http://www.fairbanksmuseum.org/forecasts" alt="Eye On The Sky print forecast">Read the forecast</a></p>
-                        <p><i class="icon ion-play"></i> <a href="http://www.vpr.net/xml/podcasts/forecast_update/eosforecast.mp3" alt="Eye On The Sky audio forecast">Listen to the forecast</a></p>
-                        <p><i class="icon ion-social-facebook"></i> <a href="https://www.facebook.com/EyeOnTheSky">EOTS On Facebook</a></p>
+                        <p><i class="icon ion-play"></i> <a href="http://www.fairbanksmuseum.org/eye-on-the-sky" alt="Eye On The Sky audio forecast">Listen to the forecast</a></p>
+                        <p><i class="icon ion-social-facebook"></i> <a href="https://www.facebook.com/EyeOnTheSky">EOTS on Facebook</a></p>
                     </div>
                 </div>
             </div>
-            {% include "underwriter.html" %}
-            {% if school_closings %}
-            <div class="recent_news">
-                <h3>Recent News</h3>
-                <div class="padding_box">
-                {% for story in recent_news %}
-                    <p><a href="{{ story.link }}" alt="{{ story.title }}">{{ story.title }}</a></p>
-                {% endfor %}
-                </div>
-            </div>
-            {% endif %}
+            {% include "underwriter1.html" %}
+            {% include "underwriter2.html" %}
+            {% include "underwriter3.html" %}
 
             <div class="hidden-xs vab">
             {% include "vab.html" %}
