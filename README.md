@@ -15,7 +15,7 @@ This project contains the code for VPR's School Closings page.
 1. Grab the secret `homepage.json` file from someone on the VPR team.
 
 
-## Regular Updates, start here:
+## Regular updates, start here:
 
 1. Enter the virtual environment. `source venv/bin/activate`
 1. To run locally, just hit a quick	`python app/index.py` and head to `127.0.0.1:5000`
