@@ -21,23 +21,3 @@ def convert_date(timestamp):
     year = timestamp[12:16]
     date = month + ' ' + day + ", " + year
     return date
-
-def get_google_sheet():
-    json_key = json.load(open('homepage.json'))
-    scope = ['https://spreadsheets.google.com/feeds']
-    credentials = SignedJwtAssertionCredentials(json_key["client_email"], json_key['private_key'], scope)
-    authorization = gspread.authorize(credentials)
-    spreadsheet = authorization.open("VPR Homepage App")
-    worksheet = spreadsheet.get_worksheet(1)
-
-    return worksheet.get_all_records()
-
-
-def get_callout(sheet_key):
-    callout = get_google_sheet()
-    md = callout[0]['Text']
-    if md:
-        html = markdown.markdown(md)
-    else:
-        html = False
-    return html
